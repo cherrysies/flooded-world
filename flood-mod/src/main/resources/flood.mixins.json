@@ -3,8 +3,7 @@
   "package": "com.example.flood.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "FluidMixin",
-    "ServerWorldMixin"
+    "WaterFluidMixin"
   ],
   "injectors": {
     "defaultRequire": 1

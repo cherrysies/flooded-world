@@ -1,5 +1,5 @@
 {
-  "minVersion": "0.8",
+  "schemaVersion": 1,
   "id": "flood",
   "version": "${version}",
   "name": "Total Flood",
@@ -8,7 +8,7 @@
     "You"
   ],
   "license": "MIT",
-  "side": "*",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "com.example.flood.FloodMod"
