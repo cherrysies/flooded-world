@@ -4,8 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.chunk.WorldChunk;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,23 +22,26 @@ public class FloodMod implements ModInitializer {
     }
 
     private void floodChunk(ServerWorld world, WorldChunk chunk) {
-        ChunkPos chunkPos = chunk.getPos();
-        int minX = chunkPos.getStartX();
-        int minZ = chunkPos.getStartZ();
-        int maxY = world.getTopY();
         int minY = world.getBottomY();
+        int maxY = world.getTopY();
 
-        // Проходим по всем блокам в чанке
-        for (int x = 0; x < 16; x++) {
-            for (int z = 0; z < 16; z++) {
-                for (int y = minY; y < maxY; y++) {
-                    BlockPos pos = new BlockPos(minX + x, y, minZ + z);
-                    
-                    // Если блок является любым видом воздуха, заменяем его на воду
-                    if (chunk.getBlockState(pos).isAir()) {
-                        // Флаг '2' (Block.NOTIFY_LISTENERS) обновляет клиент, 
-                        // но НЕ запускает пересчет соседей. Это предотвращает падение песка/гравия и лаги.
-                        chunk.setBlockState(pos, Blocks.WATER.getDefaultState(), false);
+        // Проходим по высоте мира
+        for (int y = minY; y < maxY; y++) {
+            // Получаем индекс секции чанка для текущей высоты Y
+            int sectionIndex = chunk.getSectionIndex(y);
+            ChunkSection section = chunk.getSection(sectionIndex);
+            
+            // Локальная координата Y внутри секции (всегда от 0 до 15)
+            int localY = y & 15;
+
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
+                    // Проверяем, является ли блок воздухом
+                    if (section.getBlockState(x, localY, z).isAir()) {
+                        // Прямая запись в секцию чанка. 
+                        // Параметр false отключает любые обновления соседей и колбэки блок-сущностей.
+                        // Это предотвращает цепную реакцию и краши при сохранении.
+                        section.setBlockState(x, localY, z, Blocks.WATER.getDefaultState(), false);
                     }
                 }
             }
