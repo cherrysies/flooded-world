@@ -15,6 +15,15 @@ A Minecraft mod that transforms the entire world into an endless underwater real
 - **Spawn Point**: Players spawn underwater as usual.
 - **Server Compatible**: Works on both singleplayer and multiplayer servers. Both server and clients should have the mod installed for the best experience.
 
+## Usefull commands in-game
+- /kill @e[type=item] removes all items that not in your inventory so they are not fucking your pc
+
+## Screenshots
+
+![](imgs/1.png)
+![](imgs/2.png)
+![](imgs/3.png)
+
 ## Building from Source
 
 If you want to build the mod yourself:
