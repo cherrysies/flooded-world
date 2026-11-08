@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "flood",
+  "version": "${version}",
+  "name": "Total Flood",
+  "description": "ваще пиздааа мир затоплен.",
+  "authors": [
+    "демка"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.flood.FloodMod"
+    ]
+  },
+  "mixins": [
+    "flood.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
