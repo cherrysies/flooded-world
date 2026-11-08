@@ -1,4 +1,4 @@
-# Total Flood Mod
+# Flood Mod
 
 A Minecraft mod that transforms the entire world into an endless underwater realm. Every block of air across all dimensions — Overworld, Nether, and End - is replaced with water during world generation, creating a fully submerged experience.
 
