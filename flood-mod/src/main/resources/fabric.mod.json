@@ -1,0 +1,26 @@
+{
+  "minVersion": "0.8",
+  "id": "flood",
+  "version": "${version}",
+  "name": "Total Flood",
+  "description": "Тотальное затопление мира: весь воздух при генерации чанков заменяется водой, включая Незер и Энд. Испарение воды в Незере отключено.",
+  "authors": [
+    "You"
+  ],
+  "license": "MIT",
+  "side": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.flood.FloodMod"
+    ]
+  },
+  "mixins": [
+    "flood.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
